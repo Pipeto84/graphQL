@@ -1,5 +1,5 @@
-const { query } = require("express");
 const graphql = require("graphql");
+const _ = require('lodash')
 
 const { GraphQLObjectType, GraphQLString, GraphQLSchema } = graphql;
 
@@ -19,7 +19,7 @@ const RootQuery = new GraphQLObjectType({
       type: BookType,
       args: { id: { type: GraphQLString } },
       resolve(parent, args) {
-
+        return _.find(books, {id: args.id})
       },
     },
   },
